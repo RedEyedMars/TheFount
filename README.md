@@ -2,13 +2,20 @@ TheFount
 ========
 
 Overview:
-  The player is a god(implicitly), and as such can control the NPC's that are generated. However at the begining he/she can only control NPC's that he/she has influence over. You gain influence by dealing with that NPC from a character you can control, or you can control automatically offspring of the characters you can already control.
+  The player is a god(implicitly), and as such can control the NPC's that are generated. 
+  However at the begining he/she can only control NPC's that he/she has influence over. 
+  You gain influence by dealing with that NPC from a character you can control, 
+  or you can control automatically offspring of the characters you can already control.
 
 ========
 
 TODO:
 EVERYTHING!(lol)
-Currently there is in existence(not in the repository, yet) a world generator. From this you can get the environment that the NPC's will move around in. NPC's should obviously be able to in and out of the environment you are currently looking at. The environment that is currently set up is not adequent to the task, so really what we have is the framework for figuring out what the environment is, but not the actual environment.
+Currently there is in existence(not in the repository, yet) a world generator. 
+From this you can get the environment that the NPC's will move around in. 
+NPC's should obviously be able to in and out of the environment you are currently looking at. 
+The environment that is currently set up is not adequent to the task, 
+so really what we have is the framework for figuring out what the environment is, but not the actual environment.
 
 Everything to do with NPC's has to be (re) done this includes:
   -How they interact with the world
