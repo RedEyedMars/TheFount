@@ -1,0 +1,50 @@
+Environment
+
+=====
+
+Overview:
+256x256 area that contains animals, plants and npcs. Notice it is not a 256x256x256 area, and as such it does not need 
+to generate. When rendered, the blocks will be rendered like a heightmap or a wireframe, where the squares between points
+are what you can interact with. When you dig the players can only dig one point of the height map and that point can only
+be so different from its peers. If the player digs in three adjacent points there can be generated a new type of block
+(but most likely not, ores will only generate at a low level)
+
+=====
+
+Purpose:
+To store resources, such as plants, animals, and water
+To store NPCs
+To tick when the world clock ticks, and in turn make all of its tickable things tick
+  (such as NPCs and animals, and a tick can generate more plants).
+Not to deal with collisions if it is not being rendered.
+
+=====
+
+Required Methods:
+Environment(double[] heightmap, double moisture, double windspeed, AnimalSet animals, BaseNPC npc)
+Will generate an environment heightmap based on the heightmap received. Will generate plants based on the moisture and 
+windspeed, and also the number of each animal given will be determined by these factors as well. Will also generate and 
+place NPCs.
+
+acceptNPC(NPC npc)
+Will store npc data structure based on it's current location in its current environment, then it will npc's 
+setEnvironment passing itself as the parameter.
+
+tick():
+Will call tick() on all tickable entities the environment contains. these include NPCs, Animals, and a plant generation 
+cycle.
+
+int getQuantityOfResources(Resource resource)
+Will return the number of the resource the Environment contains(this should be optimized, as it will be a common method).
+
+moveNPCtoResource(NPC npc,Resource resource)
+Will move the npc closer to the resource specified. If there are no such resources within the Environment, the environment
+asks the World which of the 4 adjacent Environments is most likely to have the specified resource
+(getEnvironmentWithMostResource(resource)), and then will tell the npc to moditify its current plan to first go to that 
+Environment, 
+modifyPlan(new Add(),0,Plan.moveToEnvironment(the returned environment from the world))
+if the resource is next to the npc then call fulfillsCurrentStep on the npc.
+
+moveNPCtoEnvironment(NPC npc, Environment environment)
+Will move the npc to the environment specified, when it is at the edge of the current environment and tries to do this,
+calls accept(npc) on the environment passed, then calls fulfillsCurrentStep(). 
